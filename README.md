@@ -1,2 +1,3 @@
 # ticket-app
-Angular + NestJS app for tickets maagement
+
+Angular v12 + NestJS v8 app for tickets maagement
