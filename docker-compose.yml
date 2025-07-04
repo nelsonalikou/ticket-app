@@ -26,6 +26,25 @@ services:
       - "80:80"
     depends_on:
       - backend
+  
+  rabbitmq-listener:
+    build:
+      context: ./ticket-backend
+      dockerfile: Dockerfile
+    command: ["node", "dist/rabbitmq.main.js"]
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - RABBITMQ_URL=${RABBITMQ_URL}
+      - RABBITMQ_TICKETS_QUEUE_NAME=${RABBITMQ_TICKETS_QUEUE_NAME}
+    volumes:
+      - ./ticket-backend/.env:/app/.env
+    depends_on:
+      - mysql
+      - rabbitmq
 
   rabbitmq:
     image: rabbitmq:3-management
