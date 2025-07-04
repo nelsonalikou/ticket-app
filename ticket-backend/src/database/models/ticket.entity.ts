@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 
 export enum TicketStatus {
@@ -18,14 +26,22 @@ export class Ticket {
   @Column('text')
   description: string;
 
+  @Column()
+  creatorId: number;
+
   @ManyToOne(() => User, (user) => user.createdTickets, { eager: true })
+  @JoinColumn({ name: 'creatorId' })
   creator: User;
+
+  @Column({ nullable: true })
+  assigneeId?: number;
 
   @ManyToOne(() => User, (user) => user.assignedTickets, {
     eager: true,
     nullable: true,
   })
-  assignee: User;
+  @JoinColumn({ name: 'assigneeId' })
+  assignee?: User;
 
   @Column({
     type: 'enum',
@@ -33,4 +49,10 @@ export class Ticket {
     default: TicketStatus.OPEN,
   })
   status: TicketStatus;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
