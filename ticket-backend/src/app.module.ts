@@ -16,7 +16,7 @@ import { UserModule } from './modules/user.module';
     TicketModule,
     UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  //controllers: [AppController],
+  //providers: [AppService],
 })
 export class AppModule {}
