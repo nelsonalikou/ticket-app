@@ -11,16 +11,18 @@ A full-stack Ticket & User Management System built with:
 
 ```
 ticket-app/
-├── backend/        # NestJS v8 server (API)
-├── frontend/       # Angular v12 client
+├── ticket-backend/        # NestJS v8 server (API)
+├── ticket-frontend/       # Angular v12 client
 └── docker-compose.yml
 ```
 
-Both the `frontend` and `backend` folders contain their respective `Dockerfile`.
+Both the `ticket-frontend` and `ticket-backend` folders contain their respective `Dockerfile`.
 
 ---
 
 ## 🚀 Getting Started
+
+Deploying on docker is recommanded as almost all the dependencies (database and rabbitmq) are already met.
 
 ### 1. Clone the Repository
 
@@ -42,20 +44,20 @@ cd ticket-app
 ### 📦 Install Dependencies
 
 ```bash
-cd backend
+cd ticket-backend
 npm install
 ```
 
 ### ⚙️ Environment Configuration
 
-1. Copy the example env file and rename it:
+1. Copy the example env file and rename it (.env.example is located in ticket-app):
 
 ```bash
 cp .env.example .env
-cp .env.example ./backend/.env
+cp .env ./ticket-backend
 ```
 
-2. Ensure your `.env` file (inside `/backend`) looks like this:
+2. Ensure your `.env` file (inside `/ticket-backend`) looks like this:
 
 ```env
 APP_ENV=local
@@ -115,7 +117,7 @@ npm install -g @angular/cli@12
 ### 📦 Install Dependencies
 
 ```bash
-cd frontend
+cd ticket-frontend
 npm install
 ```
 
